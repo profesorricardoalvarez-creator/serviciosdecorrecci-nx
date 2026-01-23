@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Servicios y precios</title>
+  <meta name="description" content="Servicios de corrección de escritura, APA 7 y revisión académica integral. Calculadora de costos incluida." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111b33;
+      --text:#e9eefc;
+      --muted:#b8c3e6;
+      --line:#2a3a68;
+      --accent:#5b8cff;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --max: 980px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, #182a59 0%, transparent 60%),
+                  radial-gradient(1000px 600px at 90% 10%, #1a3b6a 0%, transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    .wrap{
+      width:min(var(--max), 92vw);
+      margin:0 auto;
+      padding:28px 0 60px;
+    }
+    header{
+      padding:18px 18px 14px;
+      border:1px solid var(--line);
+      background: rgba(17,27,51,0.72);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+    h1{ margin:0; font-size:26px; }
+    .sub{ margin:8px 0 0; color:var(--muted); max-width:70ch; }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (min-width: 900px){
+      .row{ grid-template-columns: 1fr 1fr; }
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(17,27,51,0.72);
+      border-radius:18px;
+      padding:16px;
+      backdrop-filter: blur(8px);
+    }
+    h2{ margin:0 0 10px; font-size:18px; }
+    .muted{ color:var(--muted); }
+
+    /* Tabla académica de servicios */
+    .table-wrap{
+      margin-top:10px;
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.04);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+    thead th{
+      text-align:left;
+      font-size:13px;
+      letter-spacing:0.02em;
+      color: var(--text);
+      padding:12px 12px;
+      background: rgba(91,140,255,0.18);
+      border-bottom:1px solid rgba(255,255,255,0.14);
+    }
+    tbody td{
+      padding:12px 12px;
+      color: var(--text);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      vertical-align:top;
+      font-size:14px;
+    }
+    tbody tr:nth-child(2n){
+      background: rgba(255,255,255,0.03);
+    }
+    tbody tr:last-child td{
+      border-bottom:none;
+    }
+    .cell-muted{
+      color: var(--muted);
+    }
+    .badge{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      font-size:13px;
+    }
+
+    ul{ margin:10px 0 0 18px; padding:0; }
+    li{ margin:6px 0; }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,0.10);
+      margin:14px 0;
+    }
+
+    /* Opción 3: bloque desplegable (details) */
+    .details-box{
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:12px;
+    }
+    .details-box summary{
+      cursor:pointer;
+      color: var(--text);
+      font-size:14px;
+      font-weight:600;
+      list-style:none;
+      outline:none;
+    }
+    .details-box summary::-webkit-details-marker{
+      display:none;
+    }
+    .details-box summary::before{
+      content:"▸";
+      display:inline-block;
+      margin-right:8px;
+      transform: translateY(-1px);
+      color: rgba(255,255,255,0.75);
+    }
+    .details-box[open] summary::before{
+      content:"▾";
+    }
+    .checklist{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+    .checklist li{
+      position:relative;
+      padding-left:26px;
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .checklist li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color: rgba(34,197,94,0.95);
+    }
+
+    /* Calculadora */
+    .calc-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .service{
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      border-radius:16px;
+      padding:12px;
+    }
+    label{ display:block; font-size:14px; color:var(--text); }
+    input[type="number"]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(7,11,20,0.55);
+      color: var(--text);
+      outline: none;
+      margin-top:8px;
+    }
+    .checkline{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    input[type="checkbox"]{
+      width:18px; height:18px;
+      margin-top:2px;
+      accent-color: var(--accent);
+    }
+    .small{ font-size:13px; color:var(--muted); margin-top:6px; }
+    .result{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:12px;
+    }
+    .line{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:6px 0;
+      border-bottom:1px dashed rgba(255,255,255,0.12);
+    }
+    .line:last-child{ border-bottom:none; }
+    .total{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,0.14);
+      display:flex;
+      justify-content:space-between;
+      font-size:18px;
+    }
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .btn{
+      text-decoration:none;
+      display:inline-block;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.14);
+      background: rgba(91,140,255,0.20);
+      color: var(--text);
+      cursor:pointer;
+    }
+    .btn.green{ background: rgba(34,197,94,0.25); }
+    .btn:hover{ transform: translateY(-1px); }
+    footer{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Servicios y precios</h1>
+      <p class="sub">
+        Página informativa con calculadora de costos. No hay pagos en línea.
+        El total que ves es un estimado según la cantidad de páginas y referencias.
+      </p>
+    </header>
+
+    <div class="row">
+      <section class="card">
+        <h2>SERVICIOS Y PRECIOS</h2>
+
+        <div class="table-wrap" role="region" aria-label="Tabla de servicios y precios">
+          <table>
+            <thead>
+              <tr>
+                <th>Servicio</th>
+                <th>Precio</th>
+                <th>Mínimo que se debe pagar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Corrección de escritura (corrección directa)</td>
+                <td><span class="badge">2 USD por página</span></td>
+                <td class="cell-muted">No aplica</td>
+              </tr>
+              <tr>
+                <td>Corrección APA completa (citas + referencias)</td>
+                <td><span class="badge">0.60 USD por referencia</span></td>
+                <td><span class="badge">15 USD</span></td>
+              </tr>
+              <tr>
+                <td>Paquete “Revisión Académica Integral” (por secciones)</td>
+                <td><span class="badge">70 USD (tarifa fija)</span></td>
+                <td class="cell-muted">No aplica</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>1. Corrección de escritura (corrección directa)</h2>
+        <p class="muted">
+          Corrección directa del documento para que quede claro, bien redactado y listo para entregar.
+        </p>
+        <ul>
+          <li>Ortografía y acentuación</li>
+          <li>Puntuación</li>
+          <li>Gramática</li>
+          <li>Mejora de redacción y claridad</li>
+          <li>Eliminación de repeticiones</li>
+          <li>Formato básico</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>2. Corrección APA completa (citas + referencias)</h2>
+        <p class="muted">
+          Corrección de referencias bibliográficas del documento y eliminación de incoherencias entre citas y bibliografía.
+        </p>
+        <ul>
+          <li>Corrección y normalización de la lista de referencias (APA 7)</li>
+          <li>Corrección del formato de citas dentro del texto</li>
+          <li>Coherencia cita–referencia (cada cita con su referencia y cada referencia respaldada por al menos una cita)</li>
+          <li>Revisión de datos principales (autor, año, etc.) para evitar errores o datos incompletos</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>3. Paquete “Revisión Académica Integral” (por secciones)</h2>
+        <p class="muted">
+          Revisión por secciones de la tesis para fortalecer rigor y calidad académica.
+        </p>
+
+        <p class="muted" style="margin-top:10px;">Secciones incluidas:</p>
+        <ul>
+          <li>Planteamiento del problema</li>
+          <li>Antecedentes</li>
+          <li>Marco teórico</li>
+          <li>Metodología (diseño metodológico)</li>
+          <li>Análisis</li>
+          <li>Discusión</li>
+          <li>Conclusiones</li>
+        </ul>
+
+        <!-- OPCIÓN 3: resumen + ver detalles -->
+        <details class="details-box" style="margin-top:12px;">
+          <summary>Revisión completa de claridad, coherencia y rigor (ver detalles)</summary>
+
+          <ul class="checklist" style="margin-top:10px;">
+            <li>Planteamiento del problema (contexto y justificación)</li>
+            <li>Relación problema–objetivos–preguntas</li>
+            <li>Orden y pertinencia de antecedentes</li>
+            <li>Organización e integración del marco teórico</li>
+            <li>Consistencia del diseño metodológico</li>
+            <li>Claridad y consistencia del análisis/resultados</li>
+            <li>Discusión interpretativa conectada con el marco y los objetivos</li>
+            <li>Conclusiones alineadas, sin contradicciones</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Calculadora</h2>
+
+        <div class="calc-grid">
+          <div class="service">
+            <div class="checkline">
+              <input id="s1" type="checkbox" checked />
+              <div style="flex:1">
+                <label for="s1">Corrección de escritura (2 USD por página)</label>
+                <input id="pages" type="number" min="0" step="1" value="1" />
+                <div class="small">Ingresá la cantidad de páginas.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="checkline">
+              <input id="s2" type="checkbox" />
+              <div style="flex:1">
+                <label for="s2">Corrección APA completa (0.60 USD por referencia, mínimo 15 USD)</label>
+                <input id="refs" type="number" min="0" step="1" value="0" disabled />
+                <div class="small">Ingresá la cantidad de referencias (bibliografía).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service">
+            <div class="checkline">
+              <input id="s3" type="checkbox" />
+              <div style="flex:1">
+                <label for="s3">Paquete “Revisión Académica Integral” (70 USD)</label>
+                <div class="small">Tarifa fija.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result" aria-live="polite">
+          <div id="breakdown"></div>
+          <div class="total">
+            <span>Total estimado</span>
+            <span id="total">$0.00</span>
+          </div>
+        </div>
+
+        <div class="btns">
+          <!-- Cambiá el número y el correo cuando quieras -->
+          <a class="btn green" id="wa" href="https://wa.me/50500000000" target="_blank" rel="noopener">
+            Contactar por WhatsApp
+          </a>
+          <a class="btn" id="mail" href="mailto:tu_correo@ejemplo.com">
+            Contactar por correo
+          </a>
+          <button class="btn" id="reset" type="button">Reiniciar</button>
+        </div>
+
+        <footer>
+          Nota: la corrección APA tiene un mínimo de 15 USD si el cálculo queda por debajo.
+        </footer>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Precios:
+    // Corrección escritura: 2 USD/página
+    // APA: 0.60 USD/referencia, mínimo 15 USD
+    // Integral: 70 USD fijo
+
+    const PRICE_PER_PAGE = 2;
+    const PRICE_PER_REF = 0.60;
+    const APA_MIN = 15;
+    const INTEGRAL = 70;
+
+    const s1 = document.getElementById("s1");
+    const s2 = document.getElementById("s2");
+    const s3 = document.getElementById("s3");
+
+    const pages = document.getElementById("pages");
+    const refs = document.getElementById("refs");
+
+    const breakdown = document.getElementById("breakdown");
+    const totalEl = document.getElementById("total");
+    const resetBtn = document.getElementById("reset");
+
+    function money(n){
+      return "$" + Number(n).toFixed(2);
+    }
+
+    function clampInt(value){
+      const x = parseInt(value, 10);
+      return Number.isFinite(x) && x >= 0 ? x : 0;
+    }
+
+    function calc(){
+      const items = [];
+      let total = 0;
+
+      // Servicio 1
+      if (s1.checked){
+        const p = clampInt(pages.value);
+        const cost = p * PRICE_PER_PAGE;
+        items.push({ name: "Corrección de escritura", detail: `${p} página(s) × ${money(PRICE_PER_PAGE)}`, cost });
+        total += cost;
+      }
+
+      // Servicio 2
+      refs.disabled = !s2.checked;
+      if (s2.checked){
+        const r = clampInt(refs.value);
+        const raw = r * PRICE_PER_REF;
+        const cost = raw < APA_MIN ? (r === 0 ? 0 : APA_MIN) : raw;
+
+        let detail = `${r} referencia(s) × ${money(PRICE_PER_REF)}`;
+        if (r > 0 && raw < APA_MIN) detail += ` (mínimo ${money(APA_MIN)})`;
+
+        items.push({ name: "Corrección APA completa", detail, cost });
+        total += cost;
+      }
+
+      // Servicio 3
+      if (s3.checked){
+        items.push({ name: "Revisión Académica Integral", detail: "tarifa fija", cost: INTEGRAL });
+        total += INTEGRAL;
+      }
+
+      // Render
+      breakdown.innerHTML = items.length
+        ? items.map(it => `
+            <div class="line">
+              <div>
+                <div>${it.name}</div>
+                <div class="small">${it.detail}</div>
+              </div>
+              <div>${money(it.cost)}</div>
+            </div>
+          `).join("")
+        : `<div class="muted">Seleccioná al menos un servicio.</div>`;
+
+      totalEl.textContent = money(total);
+    }
+
+    function resetAll(){
+      s1.checked = true;
+      s2.checked = false;
+      s3.checked = false;
+      pages.value = 1;
+      refs.value = 0;
+      refs.disabled = true;
+      calc();
+    }
+
+    // Eventos
+    [s1, s2, s3, pages, refs].forEach(el => el.addEventListener("input", calc));
+    resetBtn.addEventListener("click", resetAll);
+
+    // Cálculo inicial
+    calc();
+  </script>
+</body>
+</html>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ENUNOLA | Asesorías de tesis y Edición de libros</title>
+  <title>EUNOLA | Asesoría y corrección de tesis, edición de libros y más</title>
+
   <style>
     :root{
       --bg:#0b1220;
       --card:#0f1a2f;
-      --card2:#111f39;
       --text:#e7ecf5;
       --muted:#b9c4da;
       --line:rgba(255,255,255,.12);
@@ -53,27 +53,28 @@
       display:flex;
       align-items:center;
       gap:14px;
-      min-width: 240px;
+      min-width: 260px;
     }
 
+    /* Logo más grande */
     .brand img{
-  width:150px;
-  height:150px;
-  object-fit:contain;
-  border-radius: 14px;
-  background: transparent;
-  border: none;
-  padding: 0;
-}
+      width:150px;
+      height:150px;
+      object-fit:contain;
+      border-radius: 14px;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
 
     .brand-text{
       display:flex;
       flex-direction:column;
-      gap:2px;
+      gap:4px;
     }
 
     .brand-text .name{
-      font-size:28px;
+      font-size:32px;
       letter-spacing:.8px;
       line-height:1.05;
     }
@@ -81,7 +82,7 @@
     .brand-text .tagline{
       font-size:14px;
       color:var(--muted);
-      line-height:1.2;
+      line-height:1.25;
     }
 
     nav{
@@ -152,6 +153,8 @@
       header{ position: static; }
       .content{ grid-template-columns: 1fr; }
       .brand{ min-width: unset; }
+      .brand img{ width:120px; height:120px; }
+      .brand-text .name{ font-size:28px; }
     }
 
     .card{
@@ -231,6 +234,7 @@
       background: rgba(255,255,255,.06);
       border-color: rgba(90,167,255,.35);
     }
+
     .pill{
       display:inline-flex;
       align-items:center;
@@ -257,10 +261,10 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <img src="logo_eunola_hd.png" alt="Logo de ENUNOLA" />
+        <img src="logo_eunola_hd.png" alt="Logo de EUNOLA" />
         <div class="brand-text">
-          <div class="name">ENUNOLA</div>
-          <div class="tagline">Asesorías de tesis y Edición de libros</div>
+          <div class="name">EUNOLA</div>
+          <div class="tagline">Asesoría y corrección de tesis, edición de libros y más.</div>
         </div>
       </div>
 
@@ -375,7 +379,7 @@
               <div class="note">
                 Nota importante:
                 <ul>
-                  <li>Si la tesis inicia desde cero (definición del tema, construcción de objetivos y propuesta inicial de metodología y análisis), la asesoría en todas las secciones de la tesis tiene un costo de 50 USD.</li>
+                  <li>Si la tesis inicia desde 0 con EUNOLA, la asesoría en todas las secciones tiene un costo de $50.</li>
                 </ul>
               </div>
             </div>
@@ -384,7 +388,7 @@
           <aside class="card">
             <div class="card-body">
               <h2>Contacto</h2>
-              <div class="muted">Para solicitar cotización o coordinar el servicio, contactá por WhatsApp o por correo.</div>
+              <div class="muted">Para solicitar cotización o coordinar el servicio, contacte por WhatsApp o por correo.</div>
               <div class="divider"></div>
 
               <div class="contact" aria-label="Datos de contacto">
@@ -394,11 +398,6 @@
                 <a href="mailto:eun.editorial@gmail.com">
                   Correo: eun.editorial@gmail.com
                 </a>
-              </div>
-
-              <div class="divider"></div>
-              <div class="muted">
-                Sugerencia para cotizar: enviá el documento o una muestra y describí el tipo de apoyo que necesitás.
               </div>
             </div>
           </aside>
@@ -416,7 +415,11 @@
             <div class="card-body">
               <h2>Edición de libros</h2>
               <p class="muted">
-                Podés elegir el nivel de edición según el estado de tu manuscrito. En todos los casos se incluye una revisión inicial del texto para orientar la edición (sin costo adicional).
+                Se puede elegir el nivel de edición según el estado del manuscrito. En todos los casos se incluye una revisión inicial del texto para orientar la edición (sin costo adicional).
+              </p>
+
+              <p>
+                Acompañamos a convertir tesis, experiencias, ideas o vivencias en textos claros, coherentes y listos para entregar o publicar.
               </p>
 
               <div class="divider"></div>
@@ -475,7 +478,7 @@
             <div class="card-body">
               <h2>Cotización</h2>
               <div class="muted">
-                Para solicitar cotización, enviá el manuscrito o una muestra (5–10 páginas) por WhatsApp o correo.
+                Para solicitar cotización, envíe el manuscrito o una muestra (5–10 páginas) por WhatsApp o correo.
               </div>
               <div class="divider"></div>
 
@@ -505,10 +508,10 @@
 
               <h3>Descripción</h3>
               <p>
-                Te acompañamos a convertir tus experiencias, ideas o vivencias en un libro claro, coherente y bien escrito, respetando tu voz y tu intención.
+                Acompañamos a convertir tesis, experiencias, ideas o vivencias en un libro claro, coherente y bien escrito, respetando la voz y la intención del autor.
               </p>
               <p class="muted">
-                El contenido nace de tus ideas y experiencias; el proceso se guía con acompañamiento editorial para construir un manuscrito claro y bien estructurado.
+                El contenido nace de las ideas y experiencias del autor; el proceso se guía con acompañamiento editorial para construir un manuscrito claro y bien estructurado.
               </p>
 
               <div class="divider"></div>
@@ -536,6 +539,8 @@
                 <li>Reconstrucción de experiencias significativas (etapas, logros, desafíos)</li>
                 <li>Historia de trayectoria profesional o institucional</li>
                 <li>Testimonios con enfoque humano o social</li>
+                <li>Elaboración de libros a partir de tesis</li>
+                <li>Experiencias profesionales</li>
               </ul>
 
               <div class="divider"></div>
@@ -551,7 +556,7 @@
             <div class="card-body">
               <h2>Contacto</h2>
               <div class="muted">
-                Para iniciar el proceso y recibir una cotización, contactá por WhatsApp o por correo.
+                Para iniciar el proceso y recibir una cotización, contacte por WhatsApp o por correo.
               </div>
               <div class="divider"></div>
 
@@ -569,7 +574,7 @@
       </section>
 
       <footer>
-        ENUNOLA | Asesorías de tesis y Edición de libros
+        EUNOLA | Asesoría y corrección de tesis, edición de libros y más.
       </footer>
     </main>
   </div>
@@ -606,5 +611,3 @@
   </script>
 </body>
 </html>
-
-

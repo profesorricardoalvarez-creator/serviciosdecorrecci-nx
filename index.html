@@ -3,250 +3,251 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Servicios y precios</title>
-  <meta name="description" content="Servicios de corrección de escritura, APA 7 y revisión académica integral. Calculadora de costos incluida." />
-
+  <title>ENUNOLA | Asesorías de tesis y Edición de libros</title>
   <style>
     :root{
       --bg:#0b1220;
-      --card:#111b33;
-      --text:#e9eefc;
-      --muted:#b8c3e6;
-      --line:#2a3a68;
-      --accent:#5b8cff;
-      --ok:#22c55e;
-      --warn:#f59e0b;
-      --max: 980px;
+      --card:#0f1a2f;
+      --card2:#111f39;
+      --text:#e7ecf5;
+      --muted:#b9c4da;
+      --line:rgba(255,255,255,.12);
+      --accent:#5aa7ff;
+      --accent2:#7bd3ff;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
     }
-    *{ box-sizing:border-box; }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% 0%, #182a59 0%, transparent 60%),
-                  radial-gradient(1000px 600px at 90% 10%, #1a3b6a 0%, transparent 55%),
-                  var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(90,167,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(123,211,255,.14), transparent 55%),
+        radial-gradient(900px 600px at 50% 110%, rgba(90,167,255,.12), transparent 60%),
+        var(--bg);
       color:var(--text);
-      line-height:1.45;
+      line-height:1.5;
     }
-    .wrap{
-      width:min(var(--max), 92vw);
-      margin:0 auto;
-      padding:28px 0 60px;
-    }
+
+    .wrap{max-width:1080px; margin:0 auto; padding:24px 18px 48px}
+
     header{
-      padding:18px 18px 14px;
-      border:1px solid var(--line);
-      background: rgba(17,27,51,0.72);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-    h1{ margin:0; font-size:26px; }
-    .sub{ margin:8px 0 0; color:var(--muted); max-width:70ch; }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr;
+      display:flex;
+      align-items:center;
       gap:16px;
-      margin-top:16px;
+      padding:18px 18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 14px;
+      backdrop-filter: blur(10px);
+      z-index: 5;
     }
-    @media (min-width: 900px){
-      .row{ grid-template-columns: 1fr 1fr; }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width: 240px;
     }
+
+    .brand img{
+      width:64px; height:64px;
+      object-fit:contain;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      padding:6px;
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brand-text .name{
+      font-size:28px;
+      letter-spacing:.8px;
+      line-height:1.05;
+    }
+
+    .brand-text .tagline{
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.2;
+    }
+
+    nav{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .tab-btn{
+      appearance:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-size:14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+
+    .tab-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .tab-btn[aria-selected="true"]{
+      background: linear-gradient(180deg, rgba(90,167,255,.22), rgba(255,255,255,.05));
+      border-color: rgba(90,167,255,.45);
+      box-shadow: 0 10px 25px rgba(90,167,255,.15);
+    }
+
+    main{ margin-top: 18px; }
+
+    .panel{
+      display:none;
+      animation: fade .18s ease-out;
+    }
+    .panel.active{ display:block; }
+
+    @keyframes fade{
+      from{opacity:0; transform: translateY(4px);}
+      to{opacity:1; transform: translateY(0);}
+    }
+
+    .hero{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero img{
+      width:100%;
+      height: 280px;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .content{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:16px;
+    }
+
+    @media (max-width: 920px){
+      header{ position: static; }
+      .content{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+
     .card{
       border:1px solid var(--line);
-      background: rgba(17,27,51,0.72);
-      border-radius:18px;
-      padding:16px;
-      backdrop-filter: blur(8px);
-    }
-    h2{ margin:0 0 10px; font-size:18px; }
-    .muted{ color:var(--muted); }
-
-    /* Tabla académica de servicios */
-    .table-wrap{
-      margin-top:10px;
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 16px 34px rgba(0,0,0,.28);
       overflow:hidden;
-      background: rgba(255,255,255,0.04);
-    }
-    table{
-      width:100%;
-      border-collapse:collapse;
-    }
-    thead th{
-      text-align:left;
-      font-size:13px;
-      letter-spacing:0.02em;
-      color: var(--text);
-      padding:12px 12px;
-      background: rgba(91,140,255,0.18);
-      border-bottom:1px solid rgba(255,255,255,0.14);
-    }
-    tbody td{
-      padding:12px 12px;
-      color: var(--text);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-      vertical-align:top;
-      font-size:14px;
-    }
-    tbody tr:nth-child(2n){
-      background: rgba(255,255,255,0.03);
-    }
-    tbody tr:last-child td{
-      border-bottom:none;
-    }
-    .cell-muted{
-      color: var(--muted);
-    }
-    .badge{
-      display:inline-block;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      font-size:13px;
     }
 
-    ul{ margin:10px 0 0 18px; padding:0; }
-    li{ margin:6px 0; }
+    .card .card-body{ padding:18px; }
+    .card h2{ margin:0 0 10px; font-size:20px; }
+    .card h3{ margin:18px 0 6px; font-size:16px; }
+    .muted{ color: var(--muted); }
 
     .divider{
       height:1px;
-      background: rgba(255,255,255,0.10);
-      margin:14px 0;
+      background: var(--line);
+      margin:16px 0;
     }
 
-    /* Opción 3: bloque desplegable (details) */
-    .details-box{
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      border-radius:16px;
-      padding:12px;
-    }
-    .details-box summary{
-      cursor:pointer;
-      color: var(--text);
-      font-size:14px;
-      font-weight:600;
-      list-style:none;
-      outline:none;
-    }
-    .details-box summary::-webkit-details-marker{
-      display:none;
-    }
-    .details-box summary::before{
-      content:"▸";
-      display:inline-block;
-      margin-right:8px;
-      transform: translateY(-1px);
-      color: rgba(255,255,255,0.75);
-    }
-    .details-box[open] summary::before{
-      content:"▾";
-    }
-    .checklist{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:8px;
-    }
-    .checklist li{
-      position:relative;
-      padding-left:26px;
-      color: var(--muted);
-      font-size:14px;
-      line-height:1.5;
-    }
-    .checklist li::before{
-      content:"✓";
-      position:absolute;
-      left:0;
-      top:0;
-      color: rgba(34,197,94,0.95);
-    }
-
-    /* Calculadora */
-    .calc-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:10px;
-    }
-    .service{
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      border-radius:16px;
-      padding:12px;
-    }
-    label{ display:block; font-size:14px; color:var(--text); }
-    input[type="number"]{
+    table{
       width:100%;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(7,11,20,0.55);
-      color: var(--text);
-      outline: none;
-      margin-top:8px;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
     }
-    .checkline{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
+    th, td{
+      text-align:left;
+      padding:12px 12px;
+      vertical-align:top;
+      border-bottom: 1px solid var(--line);
     }
-    input[type="checkbox"]{
-      width:18px; height:18px;
-      margin-top:2px;
-      accent-color: var(--accent);
-    }
-    .small{ font-size:13px; color:var(--muted); margin-top:6px; }
-    .result{
-      margin-top:12px;
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      border-radius:16px;
-      padding:12px;
-    }
-    .line{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      padding:6px 0;
-      border-bottom:1px dashed rgba(255,255,255,0.12);
-    }
-    .line:last-child{ border-bottom:none; }
-    .total{
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,0.14);
-      display:flex;
-      justify-content:space-between;
-      font-size:18px;
-    }
-    .btns{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px;
-    }
-    .btn{
-      text-decoration:none;
-      display:inline-block;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.14);
-      background: rgba(91,140,255,0.20);
-      color: var(--text);
-      cursor:pointer;
-    }
-    .btn.green{ background: rgba(34,197,94,0.25); }
-    .btn:hover{ transform: translateY(-1px); }
-    footer{
-      margin-top:16px;
-      color:var(--muted);
+    th{
       font-size:13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      letter-spacing:.2px;
+    }
+    tr:last-child td{ border-bottom:none; }
+
+    ul{ margin:8px 0 0 18px; padding:0; }
+    li{ margin: 6px 0; }
+
+    .note{
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(123,211,255,.25);
+      background: rgba(123,211,255,.07);
+      color: var(--text);
+      margin-top: 10px;
+    }
+
+    .contact{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .contact a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color: var(--text);
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      word-break: break-word;
+    }
+    .contact a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(90,167,255,.35);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+      opacity:.95;
     }
   </style>
 </head>
@@ -254,267 +255,353 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>Servicios y precios</h1>
-      <p class="sub">
-        Página informativa con calculadora de costos. No hay pagos en línea.
-        El total que ves es un estimado según la cantidad de páginas y referencias.
-      </p>
+      <div class="brand">
+        <img src="logo_eunola_hd.png" alt="Logo de ENUNOLA" />
+        <div class="brand-text">
+          <div class="name">ENUNOLA</div>
+          <div class="tagline">Asesorías de tesis y Edición de libros</div>
+        </div>
+      </div>
+
+      <nav aria-label="Secciones">
+        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="tab-tesis" id="btn-tesis">
+          Asesoría y corrección de tesis
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-edicion" id="btn-edicion">
+          Edición de libros
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-desde0" id="btn-desde0">
+          Libros desde cero
+        </button>
+      </nav>
     </header>
 
-    <div class="row">
-      <section class="card">
-        <h2>SERVICIOS Y PRECIOS</h2>
-
-        <div class="table-wrap" role="region" aria-label="Tabla de servicios y precios">
-          <table>
-            <thead>
-              <tr>
-                <th>Servicio</th>
-                <th>Precio</th>
-                <th>Mínimo que se debe pagar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Corrección de escritura (corrección directa)</td>
-                <td><span class="badge">2 USD por página</span></td>
-                <td class="cell-muted">No aplica</td>
-              </tr>
-              <tr>
-                <td>Corrección APA completa (citas + referencias)</td>
-                <td><span class="badge">0.60 USD por referencia</span></td>
-                <td><span class="badge">15 USD</span></td>
-              </tr>
-              <tr>
-                <td>Paquete “Revisión Académica Integral” (por secciones)</td>
-                <td><span class="badge">70 USD (tarifa fija)</span></td>
-                <td class="cell-muted">No aplica</td>
-              </tr>
-            </tbody>
-          </table>
+    <main>
+      <!-- TAB 1 -->
+      <section class="panel active" id="tab-tesis" role="tabpanel" aria-labelledby="btn-tesis">
+        <div class="hero">
+          <img src="pestaña 1.png" alt="Imagen de Asesoría y corrección de tesis" />
         </div>
 
-        <div class="divider"></div>
+        <div class="content">
+          <div class="card">
+            <div class="card-body">
+              <h2>Asesoría y corrección de tesis</h2>
 
-        <h2>1. Corrección de escritura (corrección directa)</h2>
-        <p class="muted">
-          Corrección directa del documento para que quede claro, bien redactado y listo para entregar.
-        </p>
-        <ul>
-          <li>Ortografía y acentuación</li>
-          <li>Puntuación</li>
-          <li>Gramática</li>
-          <li>Mejora de redacción y claridad</li>
-          <li>Eliminación de repeticiones</li>
-          <li>Formato básico</li>
-        </ul>
+              <h3>Servicios y precios</h3>
+              <table aria-label="Servicios y precios de tesis">
+                <thead>
+                  <tr>
+                    <th>Servicio</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1. Edición y corrección de escritura (incluye APA)</td>
+                    <td>2.20 USD por página</td>
+                  </tr>
+                  <tr>
+                    <td>2. Asesoría para iniciar la elaboración de tesis</td>
+                    <td>30 USD</td>
+                  </tr>
+                  <tr>
+                    <td>3. Asesoría en todas las secciones de la tesis</td>
+                    <td>70 USD</td>
+                  </tr>
+                </tbody>
+              </table>
 
-        <div class="divider"></div>
+              <div class="divider"></div>
 
-        <h2>2. Corrección APA completa (citas + referencias)</h2>
-        <p class="muted">
-          Corrección de referencias bibliográficas del documento y eliminación de incoherencias entre citas y bibliografía.
-        </p>
-        <ul>
-          <li>Corrección y normalización de la lista de referencias (APA 7)</li>
-          <li>Corrección del formato de citas dentro del texto</li>
-          <li>Coherencia cita–referencia (cada cita con su referencia y cada referencia respaldada por al menos una cita)</li>
-          <li>Revisión de datos principales (autor, año, etc.) para evitar errores o datos incompletos</li>
-        </ul>
+              <h3>1. Edición y corrección de escritura (incluye APA)</h3>
+              <div class="pill">Precio: 2.20 USD por página</div>
+              <p>
+                Corrección directa del documento para que quede claro, bien redactado y listo para entregar.
+                Incluye revisión APA (citas + referencias).
+              </p>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Ortografía y acentuación</li>
+                <li>Puntuación</li>
+                <li>Gramática</li>
+                <li>Mejora de redacción y claridad</li>
+                <li>Eliminación de repeticiones</li>
+                <li>Formato básico</li>
+                <li>Corrección y normalización de la lista de referencias (APA 7)</li>
+                <li>Corrección del formato de citas dentro del texto</li>
+                <li>Coherencia cita–referencia (cada cita con su referencia y cada referencia respaldada por al menos una cita)</li>
+                <li>Revisión de datos principales (autor, año, etc.) para evitar errores o datos incompletos</li>
+              </ul>
 
-        <div class="divider"></div>
+              <div class="divider"></div>
 
-        <h2>3. Paquete “Revisión Académica Integral” (por secciones)</h2>
-        <p class="muted">
-          Revisión por secciones de la tesis para fortalecer rigor y calidad académica.
-        </p>
+              <h3>2. Asesoría para iniciar la elaboración de tesis</h3>
+              <div class="pill">Precio: 30 USD</div>
+              <p>Acompañamiento para comenzar la tesis con una base clara y viable desde el inicio.</p>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Sugerencia y delimitación de temas posibles</li>
+                <li>Construcción de objetivos a partir del tema elegido</li>
+                <li>Propuesta inicial de metodología (enfoque, tipo de estudio y diseño)</li>
+                <li>Propuesta inicial de análisis (qué se analizará y cómo se organizarán los resultados)</li>
+              </ul>
 
-        <p class="muted" style="margin-top:10px;">Secciones incluidas:</p>
-        <ul>
-          <li>Planteamiento del problema</li>
-          <li>Antecedentes</li>
-          <li>Marco teórico</li>
-          <li>Metodología (diseño metodológico)</li>
-          <li>Análisis</li>
-          <li>Discusión</li>
-          <li>Conclusiones</li>
-        </ul>
+              <div class="divider"></div>
 
-        <!-- OPCIÓN 3: resumen + ver detalles -->
-        <details class="details-box" style="margin-top:12px;">
-          <summary>Revisión completa de claridad, coherencia y rigor (ver detalles)</summary>
+              <h3>3. Asesoría en todas las secciones de la tesis</h3>
+              <div class="pill">Precio: 70 USD</div>
+              <p>Revisión completa de la tesis para fortalecer rigor y calidad académica.</p>
+              <div class="muted">Secciones incluidas:</div>
+              <ul>
+                <li>Planteamiento del problema</li>
+                <li>Antecedentes</li>
+                <li>Marco teórico</li>
+                <li>Metodología (diseño metodológico)</li>
+                <li>Análisis</li>
+                <li>Discusión</li>
+                <li>Conclusiones</li>
+              </ul>
 
-          <ul class="checklist" style="margin-top:10px;">
-            <li>Planteamiento del problema (contexto y justificación)</li>
-            <li>Relación problema–objetivos–preguntas</li>
-            <li>Orden y pertinencia de antecedentes</li>
-            <li>Organización e integración del marco teórico</li>
-            <li>Consistencia del diseño metodológico</li>
-            <li>Claridad y consistencia del análisis/resultados</li>
-            <li>Discusión interpretativa conectada con el marco y los objetivos</li>
-            <li>Conclusiones alineadas, sin contradicciones</li>
-          </ul>
-        </details>
+              <p class="note">
+                Incluye revisión completa de claridad, coherencia y rigor en todo el documento: planteamiento del problema
+                (contexto y justificación), relación problema–objetivos–preguntas, orden y pertinencia de antecedentes,
+                organización e integración del marco teórico, consistencia del diseño metodológico, claridad y consistencia
+                del análisis/resultados, discusión interpretativa conectada con el marco y los objetivos, y conclusiones
+                alineadas sin contradicciones.
+              </p>
+
+              <div class="note">
+                Nota importante:
+                <ul>
+                  <li>Si la tesis inicia desde cero (definición del tema, construcción de objetivos y propuesta inicial de metodología y análisis), la asesoría en todas las secciones de la tesis tiene un costo de 50 USD.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <aside class="card">
+            <div class="card-body">
+              <h2>Contacto</h2>
+              <div class="muted">Para solicitar cotización o coordinar el servicio, contactá por WhatsApp o por correo.</div>
+              <div class="divider"></div>
+
+              <div class="contact" aria-label="Datos de contacto">
+                <a href="https://wa.me/50587380996" target="_blank" rel="noopener">
+                  WhatsApp: (505) 8738 0996
+                </a>
+                <a href="mailto:eun.editorial@gmail.com">
+                  Correo: eun.editorial@gmail.com
+                </a>
+              </div>
+
+              <div class="divider"></div>
+              <div class="muted">
+                Sugerencia para cotizar: enviá el documento o una muestra y describí el tipo de apoyo que necesitás.
+              </div>
+            </div>
+          </aside>
+        </div>
       </section>
 
-      <section class="card">
-        <h2>Calculadora</h2>
+      <!-- TAB 2 -->
+      <section class="panel" id="tab-edicion" role="tabpanel" aria-labelledby="btn-edicion">
+        <div class="hero">
+          <img src="pestaña 2.png" alt="Imagen de Edición de libros" />
+        </div>
 
-        <div class="calc-grid">
-          <div class="service">
-            <div class="checkline">
-              <input id="s1" type="checkbox" checked />
-              <div style="flex:1">
-                <label for="s1">Corrección de escritura (2 USD por página)</label>
-                <input id="pages" type="number" min="0" step="1" value="1" />
-                <div class="small">Ingresá la cantidad de páginas.</div>
-              </div>
+        <div class="content">
+          <div class="card">
+            <div class="card-body">
+              <h2>Edición de libros</h2>
+              <p class="muted">
+                Podés elegir el nivel de edición según el estado de tu manuscrito. En todos los casos se incluye una revisión inicial del texto para orientar la edición (sin costo adicional).
+              </p>
+
+              <div class="divider"></div>
+
+              <h3>1. Corrección ortotipográfica</h3>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Revisión inicial breve para detectar criterios generales del texto</li>
+                <li>Ortografía y acentuación</li>
+                <li>Puntuación y sintaxis</li>
+                <li>Concordancia y corrección gramatical</li>
+                <li>Normalización tipográfica (comillas, cursivas, guiones, mayúsculas)</li>
+                <li>Revisión de títulos, subtítulos y criterios de formato editorial</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h3>2. Edición de estilo</h3>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Revisión inicial breve para identificar problemas de claridad y fluidez</li>
+                <li>Mejora de redacción para mayor claridad y mejor ritmo</li>
+                <li>Ajuste de frases confusas o imprecisas</li>
+                <li>Mejor conexión entre párrafos (transiciones más naturales)</li>
+                <li>Unificación del tono y la voz del texto</li>
+                <li>Reducción de repeticiones, muletillas y redundancias</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h3>3. Edición de contenido (estructural)</h3>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Revisión inicial breve para ubicar puntos críticos de estructura y coherencia</li>
+                <li>Revisión del orden y la organización de capítulos o apartados</li>
+                <li>Coherencia global del libro (progresión lógica y continuidad)</li>
+                <li>Ajustes para mejorar el desarrollo de ideas, capítulos o escenas</li>
+                <li>Eliminación de repeticiones y secciones poco necesarias</li>
+                <li>Sugerencias de reorganización o reescritura cuando se requiera</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h3>4. Maquetación (opcional)</h3>
+              <div class="muted">Incluye:</div>
+              <ul>
+                <li>Formato interior del libro con estilo limpio y profesional</li>
+                <li>Jerarquía de títulos y subtítulos</li>
+                <li>Márgenes, sangrías, interlineado y numeración de páginas</li>
+                <li>Preparación del documento listo para impresión o entrega digital (según el caso)</li>
+              </ul>
             </div>
           </div>
 
-          <div class="service">
-            <div class="checkline">
-              <input id="s2" type="checkbox" />
-              <div style="flex:1">
-                <label for="s2">Corrección APA completa (0.60 USD por referencia, mínimo 15 USD)</label>
-                <input id="refs" type="number" min="0" step="1" value="0" disabled />
-                <div class="small">Ingresá la cantidad de referencias (bibliografía).</div>
+          <aside class="card">
+            <div class="card-body">
+              <h2>Cotización</h2>
+              <div class="muted">
+                Para solicitar cotización, enviá el manuscrito o una muestra (5–10 páginas) por WhatsApp o correo.
+              </div>
+              <div class="divider"></div>
+
+              <div class="contact">
+                <a href="https://wa.me/50587380996" target="_blank" rel="noopener">
+                  WhatsApp: (505) 8738 0996
+                </a>
+                <a href="mailto:eun.editorial@gmail.com">
+                  Correo: eun.editorial@gmail.com
+                </a>
               </div>
             </div>
-          </div>
-
-          <div class="service">
-            <div class="checkline">
-              <input id="s3" type="checkbox" />
-              <div style="flex:1">
-                <label for="s3">Paquete “Revisión Académica Integral” (70 USD)</label>
-                <div class="small">Tarifa fija.</div>
-              </div>
-            </div>
-          </div>
+          </aside>
         </div>
-
-        <div class="result" aria-live="polite">
-          <div id="breakdown"></div>
-          <div class="total">
-            <span>Total estimado</span>
-            <span id="total">$0.00</span>
-          </div>
-        </div>
-
-        <div class="btns">
-          <!-- Cambiá el número y el correo cuando quieras -->
-          <a class="btn green" id="wa" href="https://wa.me/50500000000" target="_blank" rel="noopener">
-            Contactar por WhatsApp
-          </a>
-          <a class="btn" id="mail" href="mailto:tu_correo@ejemplo.com">
-            Contactar por correo
-          </a>
-          <button class="btn" id="reset" type="button">Reiniciar</button>
-        </div>
-
-        <footer>
-          Nota: la corrección APA tiene un mínimo de 15 USD si el cálculo queda por debajo.
-        </footer>
       </section>
-    </div>
+
+      <!-- TAB 3 -->
+      <section class="panel" id="tab-desde0" role="tabpanel" aria-labelledby="btn-desde0">
+        <div class="hero">
+          <img src="pestaña 3.png" alt="Imagen de Acompañamiento integral para desarrollar libros desde cero" />
+        </div>
+
+        <div class="content">
+          <div class="card">
+            <div class="card-body">
+              <h2>Acompañamiento integral para desarrollar libros desde cero</h2>
+
+              <h3>Descripción</h3>
+              <p>
+                Te acompañamos a convertir tus experiencias, ideas o vivencias en un libro claro, coherente y bien escrito, respetando tu voz y tu intención.
+              </p>
+              <p class="muted">
+                El contenido nace de tus ideas y experiencias; el proceso se guía con acompañamiento editorial para construir un manuscrito claro y bien estructurado.
+              </p>
+
+              <div class="divider"></div>
+
+              <h3>Incluye</h3>
+              <ul>
+                <li>Acompañamiento editorial integral durante todo el proceso de creación del libro</li>
+                <li>Conversación inicial para definir el enfoque del libro (tema, propósito y público)</li>
+                <li>Entrevistas guiadas para recopilar hechos, recuerdos y momentos clave</li>
+                <li>Organización del contenido en una estructura de capítulos o secciones</li>
+                <li>Construcción colaborativa del texto (capítulo por capítulo)</li>
+                <li>Revisión de coherencia, claridad y continuidad del relato</li>
+                <li>Ajustes de estilo para lograr un texto fluido y agradable de leer</li>
+                <li>Corrección ortográfica, gramatical y de puntuación</li>
+                <li>Versión final limpia lista para entregar, imprimir o publicar</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h3>Ideal para</h3>
+              <ul>
+                <li>Biografías personales o familiares</li>
+                <li>Memorias y relatos de vida</li>
+                <li>Narración de hechos importantes vividos por el autor o autores</li>
+                <li>Reconstrucción de experiencias significativas (etapas, logros, desafíos)</li>
+                <li>Historia de trayectoria profesional o institucional</li>
+                <li>Testimonios con enfoque humano o social</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h3>Entrega</h3>
+              <ul>
+                <li>Versión final lista para publicar</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="card">
+            <div class="card-body">
+              <h2>Contacto</h2>
+              <div class="muted">
+                Para iniciar el proceso y recibir una cotización, contactá por WhatsApp o por correo.
+              </div>
+              <div class="divider"></div>
+
+              <div class="contact">
+                <a href="https://wa.me/50587380996" target="_blank" rel="noopener">
+                  WhatsApp: (505) 8738 0996
+                </a>
+                <a href="mailto:eun.editorial@gmail.com">
+                  Correo: eun.editorial@gmail.com
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>
+        ENUNOLA | Asesorías de tesis y Edición de libros
+      </footer>
+    </main>
   </div>
 
   <script>
-    // Precios:
-    // Corrección escritura: 2 USD/página
-    // APA: 0.60 USD/referencia, mínimo 15 USD
-    // Integral: 70 USD fijo
+    (function(){
+      const tabs = [
+        { btn: document.getElementById('btn-tesis'),  panel: document.getElementById('tab-tesis')  },
+        { btn: document.getElementById('btn-edicion'),panel: document.getElementById('tab-edicion')},
+        { btn: document.getElementById('btn-desde0'),panel: document.getElementById('tab-desde0')},
+      ];
 
-    const PRICE_PER_PAGE = 2;
-    const PRICE_PER_REF = 0.60;
-    const APA_MIN = 15;
-    const INTEGRAL = 70;
-
-    const s1 = document.getElementById("s1");
-    const s2 = document.getElementById("s2");
-    const s3 = document.getElementById("s3");
-
-    const pages = document.getElementById("pages");
-    const refs = document.getElementById("refs");
-
-    const breakdown = document.getElementById("breakdown");
-    const totalEl = document.getElementById("total");
-    const resetBtn = document.getElementById("reset");
-
-    function money(n){
-      return "$" + Number(n).toFixed(2);
-    }
-
-    function clampInt(value){
-      const x = parseInt(value, 10);
-      return Number.isFinite(x) && x >= 0 ? x : 0;
-    }
-
-    function calc(){
-      const items = [];
-      let total = 0;
-
-      // Servicio 1
-      if (s1.checked){
-        const p = clampInt(pages.value);
-        const cost = p * PRICE_PER_PAGE;
-        items.push({ name: "Corrección de escritura", detail: `${p} página(s) × ${money(PRICE_PER_PAGE)}`, cost });
-        total += cost;
+      function activate(index){
+        tabs.forEach((t, i) => {
+          const active = i === index;
+          t.btn.setAttribute('aria-selected', active ? 'true' : 'false');
+          t.panel.classList.toggle('active', active);
+        });
+        tabs[index].btn.focus({preventScroll:true});
       }
 
-      // Servicio 2
-      refs.disabled = !s2.checked;
-      if (s2.checked){
-        const r = clampInt(refs.value);
-        const raw = r * PRICE_PER_REF;
-        const cost = raw < APA_MIN ? (r === 0 ? 0 : APA_MIN) : raw;
+      tabs.forEach((t, i) => t.btn.addEventListener('click', () => activate(i)));
 
-        let detail = `${r} referencia(s) × ${money(PRICE_PER_REF)}`;
-        if (r > 0 && raw < APA_MIN) detail += ` (mínimo ${money(APA_MIN)})`;
-
-        items.push({ name: "Corrección APA completa", detail, cost });
-        total += cost;
-      }
-
-      // Servicio 3
-      if (s3.checked){
-        items.push({ name: "Revisión Académica Integral", detail: "tarifa fija", cost: INTEGRAL });
-        total += INTEGRAL;
-      }
-
-      // Render
-      breakdown.innerHTML = items.length
-        ? items.map(it => `
-            <div class="line">
-              <div>
-                <div>${it.name}</div>
-                <div class="small">${it.detail}</div>
-              </div>
-              <div>${money(it.cost)}</div>
-            </div>
-          `).join("")
-        : `<div class="muted">Seleccioná al menos un servicio.</div>`;
-
-      totalEl.textContent = money(total);
-    }
-
-    function resetAll(){
-      s1.checked = true;
-      s2.checked = false;
-      s3.checked = false;
-      pages.value = 1;
-      refs.value = 0;
-      refs.disabled = true;
-      calc();
-    }
-
-    // Eventos
-    [s1, s2, s3, pages, refs].forEach(el => el.addEventListener("input", calc));
-    resetBtn.addEventListener("click", resetAll);
-
-    // Cálculo inicial
-    calc();
+      // Navegación con teclado (izquierda/derecha)
+      const nav = document.querySelector('nav[aria-label="Secciones"]');
+      nav.addEventListener('keydown', (e) => {
+        const currentIndex = tabs.findIndex(t => t.btn.getAttribute('aria-selected') === 'true');
+        if (e.key === 'ArrowRight') { e.preventDefault(); activate((currentIndex + 1) % tabs.length); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); activate((currentIndex - 1 + tabs.length) % tabs.length); }
+        if (e.key === 'Home')       { e.preventDefault(); activate(0); }
+        if (e.key === 'End')        { e.preventDefault(); activate(tabs.length - 1); }
+      });
+    })();
   </script>
 </body>
 </html>
